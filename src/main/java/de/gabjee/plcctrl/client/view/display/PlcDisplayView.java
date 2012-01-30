@@ -15,11 +15,11 @@ public class PlcDisplayView extends BasicBeanDisplayView implements PlcDisplayVi
     protected Widget createWidget() {
         VerticalPanel mainPanel = (VerticalPanel) super.createWidget();
         HorizontalPanel panel = new HorizontalPanel();
-        panel.add(new Label("Code"));
+        panel.add(new Label("Plc"));
         panel.add(ip);
         panel.add(port);
-        ip.addStyleName("price");
-        port.addStyleName("price");
+        ip.addStyleName("plc");
+        port.addStyleName("plc");
         mainPanel.add(panel);
         return mainPanel;
     }

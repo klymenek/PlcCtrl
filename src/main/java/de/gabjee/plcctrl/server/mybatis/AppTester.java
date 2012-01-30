@@ -1,9 +1,11 @@
 package de.gabjee.plcctrl.server.mybatis;
 
 import de.gabjee.plcctrl.client.DatabaseService;
-import de.gabjee.plcctrl.client.bean.PlcBean;
+import de.gabjee.plcctrl.client.bean.ProcessVarBean;
+import de.gabjee.plcctrl.client.bean.ProcessVarBeanSet;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,11 +30,17 @@ public class AppTester {
         SqlSession session = sessionFac.openSession();
         try {
             DatabaseService plcServiceObj = session.getMapper(DatabaseService.class);
-           
+
             System.out.println(plcServiceObj.getPlc(1l));
+            System.out.println(plcServiceObj.getPlcs());
+
+            System.out.println(plcServiceObj.getCategory(1l));
+            System.out.println(plcServiceObj.getCategorys());
             
-//            plcServiceObj.savePlc(plc);
-//            session.commit();
+            ProcessVarBean processVar = plcServiceObj.getProcessVar(1l);
+            System.out.println(processVar);
+            List<ProcessVarBean> processVars = plcServiceObj.getProcessVarsAll();
+            System.out.println(processVars);
 
         } finally {
             session.close();

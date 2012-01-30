@@ -23,7 +23,7 @@ public class ProcessVarSetDisplayPresenter extends LazyPresenter<ProcessVarSetDi
     }
     @Inject
     private DatabaseServiceAsync service = null;
-
+    
     public void onDisplayProcessVarSet(ProcessVarBeanSet varset) {
         view.clear();
         service.getProcessVars(new AsyncCallback<ProcessVarBeanSet>() {
@@ -36,8 +36,8 @@ public class ProcessVarSetDisplayPresenter extends LazyPresenter<ProcessVarSetDi
             @Override
             public void onSuccess(ProcessVarBeanSet vars) {
 
-                for (ProcessVarBean product : vars.getVars()) {
-                    view.addProcessVar(product.getName(), product.getDescription(), String.valueOf(product.getModbusaddr()));
+                for (ProcessVarBean var : vars.getVars()) {
+                    view.addProcessVar(var.getName(), var.getDescription(), String.valueOf(var.getModbusaddr()));
                 }
 
                 eventBus.changeMainWidget(view);

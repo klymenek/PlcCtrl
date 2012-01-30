@@ -5,6 +5,7 @@
             30
         </session-timeout>
     </session-config>
+    
     <!--  Filters -->
     <filter>
         <filter-name>guiceFilter</filter-name>
@@ -17,11 +18,12 @@
     <listener>
         <listener-class>de.gabjee.plcctrl.server.config.ProductionServletConfig</listener-class>
     </listener>
+    
     <!-- start DB Connection with params -->
+    <!--
     <context-param>
         <param-name>db.url</param-name>
         <param-value>jdbc:h2:~\plccontrol</param-value>
-        <!-- <param-value>jdbc:h2:~/wagocontrol;INIT=CREATE SCHEMA IF NOT EXISTS WAGOCONTROL\;RUNSCRIPT FROM '~/sql/db_init.sql';DB_CLOSE_DELAY=-1</param-value> -->
     </context-param>
     <context-param>
         <param-name>db.user</param-name>
@@ -34,6 +36,7 @@
     <listener>
         <listener-class>org.h2.server.web.DbStarter</listener-class>
     </listener>
+    -->
     <!-- Default page to serve -->
     <welcome-file-list>
         <welcome-file>PlcCtrl.html</welcome-file>

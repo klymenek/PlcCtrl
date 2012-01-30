@@ -1,6 +1,5 @@
 package de.gabjee.plcctrl.client.view;
 
-import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -10,8 +9,6 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
-import de.gabjee.plcctrl.client.bean.CategoryBean;
-import de.gabjee.plcctrl.client.bean.PlcBean;
 import de.gabjee.plcctrl.client.presenter.TopBarPresenter.TopBarViewInterface;
 
 public class TopBarView extends BaseView implements TopBarViewInterface {
@@ -29,10 +26,10 @@ public class TopBarView extends BaseView implements TopBarViewInterface {
         save.setValue(true);
 
         mainPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-        mainPanel.add(new Label("Products :"));
+        mainPanel.add(new Label("Categories :"));
         mainPanel.add(category);
         mainPanel.add(showCategory);
-        mainPanel.add(new Label("Deals :"));
+        mainPanel.add(new Label("Plcs :"));
         mainPanel.add(plc);
         mainPanel.add(showPlc);
         mainPanel.add(save);
@@ -74,12 +71,12 @@ public class TopBarView extends BaseView implements TopBarViewInterface {
 
     @Override
     public String getSelectedPlc() {
-        return plc.getValue(plc.getSelectedIndex());
+        return plc.getItemText(plc.getSelectedIndex());
     }
 
     @Override
     public String getSelectedCategory() {
-        return category.getValue(category.getSelectedIndex());
+        return category.getItemText(category.getSelectedIndex());
     }
 
     @Override

@@ -13,7 +13,6 @@
         <typeAlias type="de.gabjee.plcctrl.client.bean.CategoryBean" alias="category"/>
         <typeAlias type="de.gabjee.plcctrl.client.bean.PlcBean" alias="plc"/>
         <typeAlias type="de.gabjee.plcctrl.client.bean.ProcessVarBean" alias="var"/>
-        <typeAlias type="de.gabjee.plcctrl.client.bean.ProcessVarBeanSet" alias="varset"/>
     </typeAliases>
 	
     <environments default="development">
@@ -21,7 +20,7 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="org.h2.Driver" />
-                <property name="url" value="jdbc:h2:file:./db/plcctrl" />
+                <property name="url" value="jdbc:h2:file:D:/dev/PlcCtrl/db/plcctrl" />
                 <property name="username" value="sa" />
                 <property name="password" value="12qwertz.-" />
             </dataSource>

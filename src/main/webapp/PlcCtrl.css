@@ -46,13 +46,33 @@
 	margin: 0px;
 }
 
-.display .price {
+.display .category {
 	color: red;
 	font-weight: bold;
 	margin-left: 50px;
 }
 
-.display .gwt-HTML .price {
+.display .gwt-HTML .category {
+	margin-left: 30px;
+}
+
+.display .plc {
+	color: red;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+.display .gwt-HTML .plc {
+	margin-left: 30px;
+}
+
+.display .processvar {
+	color: red;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+.display .gwt-HTML .processvar {
 	margin-left: 30px;
 }
 
@@ -60,4 +80,8 @@
 	background: orange none repeat scroll 0 0;
 	color: white;
 	text-align: center;
+}
+
+.dialogVPanel {
+    margin: 5px;
 }

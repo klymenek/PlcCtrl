@@ -24,17 +24,19 @@ public class LoginView extends BaseView implements LoginViewInterface {
         mainPanel.add(login);
 
         return mainPanel;
-
     }
 
+    @Override
     public HasClickHandlers getLoginButton() {
         return login;
     }
 
+    @Override
     public HasValue<String> getUserName() {
         return username;
     }
 
+    @Override
     public Widget getViewWidget() {
         return this;
     }

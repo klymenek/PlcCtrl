@@ -43,14 +43,14 @@
         from CATEGORYS
     </select>
     
-    <select id="getProcessVar" parameterType="Long" resultType="var">
-        select id, name, description, ip, port
+    <select id="getProcessVar" parameterType="Long" resultMap="ProcessVarResultMap">
+        select id, name, description, modbusaddr, plc, category
         from MODBUS_DIGITAL
         where id = #{id}
     </select>
         
-    <select id="getProcessVarsAll" resultType="var">
-        select id, name, description, modbusaddr
+    <select id="getProcessVarsAll" resultType="var" resultMap="ProcessVarResultMap">
+        select id, name, description, modbusaddr, plc, category
         from MODBUS_DIGITAL
     </select>
 </mapper>

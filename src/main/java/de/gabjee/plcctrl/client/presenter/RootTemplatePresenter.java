@@ -26,6 +26,8 @@ public class RootTemplatePresenter extends LazyPresenter<RootTemplatePresenter.R
         void setBottomWidget(Widget w);
 
         void setMessage(String message);
+        
+        void showErrorPanel(String title, String msg);
     }
 
     public void onChangeTopWidget(IView top) {
@@ -68,5 +70,9 @@ public class RootTemplatePresenter extends LazyPresenter<RootTemplatePresenter.R
 
     public void onDisplayProcessVar(ProcessVarBean category) {
         view.setMessage("");
+    }
+    
+    public void onError(String title, String msg) {
+        view.showErrorPanel(title, msg);
     }
 }

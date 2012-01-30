@@ -8,15 +8,15 @@ import de.gabjee.plcctrl.client.presenter.display.CategoryDisplayPresenter.Categ
 
 public class CategoryDisplayView extends BasicBeanDisplayView implements CategoryDisplayViewInterface {
 
-    private Label price = new Label();
+    private Label category = new Label();
 
     @Override
     protected Widget createWidget() {
         VerticalPanel mainPanel = (VerticalPanel) super.createWidget();
         HorizontalPanel panel = new HorizontalPanel();
-        panel.add(new Label("Price"));
-        panel.add(price);
-        price.addStyleName("price");
+        panel.add(new Label("Category"));
+        panel.add(category);
+        category.addStyleName("category");
         mainPanel.add(panel);
         return mainPanel;
     }

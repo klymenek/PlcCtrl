@@ -59,6 +59,9 @@ public interface MyEventBus extends EventBus {
     @NotFoundHistory
     @Event(handlers = RootTemplatePresenter.class)
     public void notFound();
+    
+    @Event(handlers = RootTemplatePresenter.class)
+    public void error(String title, String msg);
 
     @Event(handlers = AccountPresenter.class)
     public void login(String username);

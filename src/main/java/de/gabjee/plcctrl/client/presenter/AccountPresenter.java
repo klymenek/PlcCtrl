@@ -3,11 +3,12 @@ package de.gabjee.plcctrl.client.presenter;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
 import com.mvp4g.client.view.LazyView;
-import de.gabjee.plcctrl.client.DatabaseService;
+import de.gabjee.plcctrl.client.DatabaseServiceAsync;
 import de.gabjee.plcctrl.client.MyEventBus;
 import de.gabjee.plcctrl.client.bean.ProcessVarBeanSet;
 import de.gabjee.plcctrl.client.view.AccountView;
@@ -22,9 +23,8 @@ public class AccountPresenter extends LazyPresenter<AccountPresenter.AccountView
 
         void setUsername(String username);
     }
-    
     @Inject
-    DatabaseService service;
+    DatabaseServiceAsync service;
     String user;
 
     @Override
@@ -33,16 +33,25 @@ public class AccountPresenter extends LazyPresenter<AccountPresenter.AccountView
 
             @Override
             public void onClick(ClickEvent event) {
-                ProcessVarBeanSet varset = service.getProcessVars();
-                
-                eventBus.displayProcessVarSet(varset);
+                service.getProcessVars(new AsyncCallback<ProcessVarBeanSet>() {
+
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        throw new UnsupportedOperationException("Not supported yet.");
+                    }
+
+                    @Override
+                    public void onSuccess(ProcessVarBeanSet result) {
+                        eventBus.displayProcessVarSet(result);
+                    }
+                });
             }
         });
     }
 
-    public void onLogin(String user) {
-        this.user = user;
-        view.setUsername(user);
+    public void onLogin(String username) {
+        this.user = username;
+        view.setUsername(username);
         eventBus.changeBottomWidget(view);
     }
 }

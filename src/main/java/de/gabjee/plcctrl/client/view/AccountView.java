@@ -10,7 +10,7 @@ import de.gabjee.plcctrl.client.presenter.AccountPresenter.AccountViewInterface;
 
 public class AccountView extends BaseView implements AccountViewInterface {
 
-    private Button showCart = new Button("Show Cart");
+    private Button showCart = new Button("Show Vars");
     private Label username = new Label();
 
     @Override

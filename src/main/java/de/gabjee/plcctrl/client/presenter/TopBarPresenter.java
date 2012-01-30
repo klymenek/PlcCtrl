@@ -1,16 +1,12 @@
 package de.gabjee.plcctrl.client.presenter;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.inject.Inject;
 import com.mvp4g.client.annotation.Presenter;
 import com.mvp4g.client.presenter.LazyPresenter;
@@ -60,18 +56,18 @@ public class TopBarPresenter extends LazyPresenter<TopBarPresenter.TopBarViewInt
 
             @Override
             public void onClick(ClickEvent event) {
-                String plc = view.getSelectedPlc();
-                service.getPlc(getIdByName(plc), new AsyncCallback<PlcBean>() {
+                final String plc = view.getSelectedPlc();
+                service.getPlc(getIdByName(plc, plcs), new AsyncCallback<PlcBean>() {
 
                     @Override
                     public void onFailure(Throwable caught) {
-                        //do sthg						
+                        eventBus.error("Error getPlc: ", "Plc: " + plc + " PlcId: " + getIdByName(plc,plcs) + "  Message: " + caught.getLocalizedMessage());						
                     }
 
                     @Override
-                    public void onSuccess(PlcBean deal) {
-                        plcSelected = deal;
-                        eventBus.displayPlc(deal);
+                    public void onSuccess(PlcBean plc) {
+                        plcSelected = plc;
+                        eventBus.displayPlc(plc);
                     }
                 });
             }
@@ -81,12 +77,12 @@ public class TopBarPresenter extends LazyPresenter<TopBarPresenter.TopBarViewInt
 
             @Override
             public void onClick(ClickEvent event) {
-                String category = view.getSelectedCategory();
-                service.getCategory(getIdByName(category), new AsyncCallback<CategoryBean>() {
+                final String category = view.getSelectedCategory();
+                service.getCategory(getIdByName(category, categorys), new AsyncCallback<CategoryBean>() {
 
                     @Override
                     public void onFailure(Throwable caught) {
-                        //do sthg						
+                        eventBus.error("Error getCategory: ", "Category: " + category + " CategoryId: " + getIdByName(category, categorys) + "  Message: " + caught.getLocalizedMessage());						
                     }
 
                     @Override
@@ -112,7 +108,7 @@ public class TopBarPresenter extends LazyPresenter<TopBarPresenter.TopBarViewInt
 
             @Override
             public void onFailure(Throwable caught) {
-                //do sthg				
+                eventBus.error("Error getPlcs: ", caught.getLocalizedMessage());
             }
 
             @Override
@@ -121,7 +117,7 @@ public class TopBarPresenter extends LazyPresenter<TopBarPresenter.TopBarViewInt
 
                     @Override
                     public void onFailure(Throwable caught) {
-                        //do sthg				
+                        eventBus.error("Error getCategories: ", caught.getLocalizedMessage());
                     }
 
                     @Override
@@ -174,9 +170,9 @@ public class TopBarPresenter extends LazyPresenter<TopBarPresenter.TopBarViewInt
         view.setSelectedPlc(0);
     }
 
-    private Long getIdByName(String category) {
+    private Long getIdByName(String category, List<BasicBean> list) {
         Long id = null;
-        for (BasicBean basicBean : categorys) {
+        for (BasicBean basicBean : list) {
             if (basicBean.getName().equals(category)) {
                 id = basicBean.getId();
                 break;

@@ -17,7 +17,7 @@ public class ProcessVarDisplayView extends BasicBeanDisplayView implements Proce
         HorizontalPanel panel = new HorizontalPanel();
         panel.add(new Label("ProcessVar"));
         panel.add(var);
-        var.addStyleName("price");
+        var.addStyleName("processvar");
         mainPanel.add(panel);
         return mainPanel;
     }

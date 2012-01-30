@@ -47,6 +47,9 @@ public class MyBatisDatabaseService extends RemoteServiceServlet implements Data
     private static Reader reader;
     private static String CONFIGURATION_FILE = "mybatis/sqlmap-config.xml";
 
+    public MyBatisDatabaseService() {
+    }        
+
     static {
         try {
             reader = Resources.getResourceAsReader(CONFIGURATION_FILE);
