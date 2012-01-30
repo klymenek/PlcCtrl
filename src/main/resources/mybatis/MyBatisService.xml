@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="de.gabjee.plcctrl.client.DatabaseService">
+    <!--    result maps     -->
+    <resultMap id="ProcessVarResultMap" type="var" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        
+        <result column="modbusaddr" property="modbusaddr" jdbcType="INTEGER" />
+        <result column="plc" property="plc" jdbcType="INTEGER" />
+        <result column="category" property="category" jdbcType="INTEGER" />
+        
+ 
+        <!--        one to one     -->
+        <association property="plc" column="plc" javaType="de.gabjee.plcctrl.client.bean.PlcBean"
+                     select="getPlc"/>
+        <association property="category" column="category" javaType="de.gabjee.plcctrl.client.bean.CategoryBean"
+                     select="getCategory"/>
+    </resultMap>
+	
+    <select id="getPlc" parameterType="Long" resultType="plc">
+        select id, name, description, ip, port
+        from MODBUS_PLCS
+        where id = #{id}
+    </select>
+        
+    <select id="getPlcs" resultType="basic">
+        select id, name, description
+        from MODBUS_PLCS
+    </select>
+    
+    <select id="getCategory" parameterType="Long" resultType="category">
+        select id, name, description
+        from CATEGORYS
+        where id = #{id}
+    </select>
+        
+    <select id="getCategorys" resultType="basic">
+        select id, name, description
+        from CATEGORYS
+    </select>
+    
+    <select id="getProcessVar" parameterType="Long" resultType="var">
+        select id, name, description, ip, port
+        from MODBUS_DIGITAL
+        where id = #{id}
+    </select>
+        
+    <select id="getProcessVarsAll" resultType="var">
+        select id, name, description, modbusaddr
+        from MODBUS_DIGITAL
+    </select>
+</mapper>

@@ -1,0 +1,6 @@
+TopBar
+
+Label   ListBox     Button           CheckBox       |   Label          ListBox         Button                   CheckBox              
+
+"Plc:"  "[plcs]"    "Edit[editPlc]"  "Filter ON"    |   "Category:"    "[categories]"  "Edit[editCategory]"     "Filter ON"
+
